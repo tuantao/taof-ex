@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "TaoF - Friends (All-in-One)",
+  "version": "0.1.0",
+  "description": "Toolbox hỗ trợ Facebook/Threads/TikTok: nút tải video, chặn tracking params, stop feed, video controls, shortcuts.",
+  "action": {
+    "default_popup": "popup/index.html"
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "permissions": [
+    "storage",
+    "downloads",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.facebook.com/*",
+    "*://*.fbcdn.net/*",
+    "*://*.threads.net/*",
+    "*://*.tiktok.com/*",
+    "*://*.ttwstatic.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.facebook.com/*"
+      ],
+      "js": [
+        "src/content/fb/inject-video-buttons.js",
+        "src/content/fb/remove-tracking.js",
+        "src/content/fb/stop-feed.js",
+        "src/content/fb/video-controls.js"
+      ],
+      "css": [
+        "styles/content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "styles/content.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

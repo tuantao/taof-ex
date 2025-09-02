@@ -1,0 +1,2 @@
+.taof-download-btn:hover { opacity: .9; transform: translateY(-1px); }
+.taof-download-btn:active { opacity: .85; transform: translateY(0); }
